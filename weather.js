@@ -49,7 +49,8 @@ const getWeatherDataFormApi = async () => {
     //! createdLiInnerHTML added to createdLi with innerHTML:
     createdLi.innerHTML = createdLiInnerHTML;
 
-    list.append(createdLi);
+    //? every city added to the start:
+    list.prepend(createdLi);
   } catch (error) {}
 
   form.reset(); //? same as ---> input.value = "";
