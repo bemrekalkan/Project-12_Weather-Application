@@ -9,13 +9,23 @@ form.addEventListener("submit", (e) => {
   getWeatherDataFormApi();
 });
 
-const getWeatherDataFormApi = () => {
+const getWeatherDataFormApi = async () => {
   //   alert("http request gone");
 
-  let apiKey = DecryptStringAES(localStorage.getItem("apiKey"));
+  let tokenKey = DecryptStringAES(localStorage.getItem("apiKey"));
   let inputValue = input.value;
-  let url = `https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+  let unitType = "metric";
+  let lang = "tr";
+  let url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${tokenKey}&units=${unitType}&lang=${lang}
   `;
+
+  try {
+    //! with FETCH():
+    // const response = await fetch(url).then((response => response.json());
+    //! with AXIOS():
+    const response = await axios(url); //? default = GET..
+    console.log(response.data);
+  } catch (error) {}
 
   form.reset(); //? same as ---> input.value = "";
 };
