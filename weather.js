@@ -24,7 +24,10 @@ const getWeatherDataFormApi = async () => {
     // const response = await fetch(url).then((response => response.json());
     //! with AXIOS():
     const response = await axios(url); //? default = GET..
-    console.log(response.data);
+    //! destructiring:
+    const { name, main, sys, weather } = response.data;
+    let iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
+    // console.log(response.data);
   } catch (error) {}
 
   form.reset(); //? same as ---> input.value = "";
