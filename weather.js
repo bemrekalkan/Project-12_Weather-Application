@@ -28,6 +28,28 @@ const getWeatherDataFormApi = async () => {
     const { name, main, sys, weather } = response.data;
     let iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
     // console.log(response.data);
+
+    //! creating "li" with DOM;
+    const createdLi = document.createElement("li");
+    //! a class name is given.
+    createdLi.classList.add("city");
+    //! card:
+    const createdLiInnerHTML = `
+         <h2 class="city-name" data-name="${name}, ${sys.country}">
+            <span>${name}</span>
+            <sup>${sys.country}</sup>
+        </h2>
+        <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+            <figure>
+                <img class="city-icon" src="${iconUrl}">
+                <figcaption>${weather[0].description}</figcaption>
+            </figure>
+    `;
+
+    //! createdLiInnerHTML added to createdLi with innerHTML:
+    createdLi.innerHTML = createdLiInnerHTML;
+
+    list.append(createdLi);
   } catch (error) {}
 
   form.reset(); //? same as ---> input.value = "";
