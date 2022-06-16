@@ -35,6 +35,17 @@ const getWeatherDataFormApi = async () => {
     const cityListItems = list.querySelectorAll(".city"); //nodeList
     const cityListItemsArray = Array.from(cityListItems); // array
 
+    if (cityListItemsArray.length > 0) {
+      const filteredArray = cityListItemsArray.filter(
+        (cityCard) => cityCard.querySelector("span").innerText == name
+      );
+      if (filteredArray.length > 0) {
+        msg.innerText = `You already know the weather for ${name}, Please search for another city`;
+        form.reset();
+        return;
+      }
+    }
+
     //! creating "li" with DOM;
     const createdLi = document.createElement("li");
     //! a class name is given.
