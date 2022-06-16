@@ -29,6 +29,12 @@ const getWeatherDataFormApi = async () => {
     let iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
     // console.log(response.data);
 
+    //? forEach => array + nodeList
+    //? map, filter, reduce => array
+
+    const cityListItems = list.querySelectorAll(".city"); //nodeList
+    const cityListItemsArray = Array.from(cityListItems); // array
+
     //! creating "li" with DOM;
     const createdLi = document.createElement("li");
     //! a class name is given.
