@@ -41,6 +41,11 @@ const getWeatherDataFormApi = async () => {
       );
       if (filteredArray.length > 0) {
         msg.innerText = `You already know the weather for ${name}, Please search for another city`;
+
+        //? after 4 seconds message will remove.
+        setTimeout(() => {
+          msg.innerText = "";
+        }, 4000);
         form.reset();
         return;
       }
