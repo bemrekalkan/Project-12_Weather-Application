@@ -21,9 +21,11 @@ const getWeatherDataFormApi = async () => {
 
   try {
     //! with FETCH():
-    // const response = await fetch(url).then((response => response.json());
+    //* const response = await fetch(url).then((response => response.json());
+
     //! with AXIOS():
     const response = await axios(url); //? default = GET..
+
     //! destructiring:
     const { name, main, sys, weather } = response.data;
     let iconUrl = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
@@ -53,9 +55,11 @@ const getWeatherDataFormApi = async () => {
 
     //! creating "li" with DOM;
     const createdLi = document.createElement("li");
+
     //! a class name is given.
     createdLi.classList.add("city");
-    //! card:
+
+    //! card creating:
     const createdLiInnerHTML = `
          <h2 class="city-name" data-name="${name}, ${sys.country}">
             <span>${name}</span>
@@ -76,6 +80,8 @@ const getWeatherDataFormApi = async () => {
   } catch (error) {
     //! error handling:
     msg.innerText = error;
+
+    //? after 3 seconds message will remove.
     setTimeout(() => {
       msg.innerText = "";
     }, 3000);
