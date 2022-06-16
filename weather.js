@@ -42,10 +42,10 @@ const getWeatherDataFormApi = async () => {
       if (filteredArray.length > 0) {
         msg.innerText = `You already know the weather for ${name}, Please search for another city`;
 
-        //? after 4 seconds message will remove.
+        //? after 3 seconds message will remove.
         setTimeout(() => {
           msg.innerText = "";
-        }, 4000);
+        }, 3000);
         form.reset();
         return;
       }
@@ -73,7 +73,13 @@ const getWeatherDataFormApi = async () => {
 
     //? every city added to the start:
     list.prepend(createdLi);
-  } catch (error) {}
+  } catch (error) {
+    //! error handling:
+    msg.innerText = error;
+    setTimeout(() => {
+      msg.innerText = "";
+    }, 3000);
+  }
 
   form.reset(); //? same as ---> input.value = "";
 };
